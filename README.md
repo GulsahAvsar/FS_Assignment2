@@ -31,7 +31,7 @@
 | Product-Service       | [Docker Image Link](#)                     |
 | Store-Admin           | [Docker Image Link](#)                     |
 | Makeline-Service      | [Docker Image Link](#)                     |
-| AI-Service            | [Docker Image Link](#)                     |
+| AI-Service            | [Docker Image Link]([#](https://hub.docker.com/repository/docker/gulsahavsar/ai-service-best-buy/general))                     |
 
 
 
