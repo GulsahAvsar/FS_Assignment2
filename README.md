@@ -51,59 +51,59 @@ In the Azure Portal, under Kubernetes services create and select Kubernetes clus
 
 In the Basics tap fill in the following details:
 
-*Subscription: Select your subscription.
+* Subscription: Select your subscription.
 
-*Resource group: Choose FullStackLAB2
+* Resource group: Choose FullStackLAB2
 
-*Cluster preset configuration: Choose Dev/Test.
+* Cluster preset configuration: Choose Dev/Test.
 
-*Kubernetes cluster name: BestBuyCluster
+* Kubernetes cluster name: BestBuyCluster
 
-*Region: Same as your resource group (e.g., Canada)
+* Region: Same as your resource group (e.g., Canada)
 
-*Availability zones: None
+* Availability zones: None
 
-*AKS pricing tier: Free
+* AKS pricing tier: Free
 
-*Kubernetes version: Default
+* Kubernetes version: Default
 
-*Automatic upgrade: Disabled
+* Automatic upgrade: Disabled
 
-*Automatic upgrade scheduler: No schedule
+* Automatic upgrade scheduler: No schedule
 
-*Node security channel type: None
+* Node security channel type: None
 
-*Security channel scheduler: No schedule
+* Security channel scheduler: No schedule
 
-*Authentication and Authorization: Local accounts with Kubernetes RBAC
+* Authentication and Authorization: Local accounts with Kubernetes RBAC
 
-*In the Node pools tap fill in the following details
+* In the Node pools tap fill in the following details
 
-*Select agentpool. Optionally change its name to masterpool. This nodes will have the controlplane.
+* Select agentpool. Optionally change its name to masterpool. This nodes will have the controlplane.
 
-*Set node size to D2as_v4.
+* Set node size to D2as_v4.
 
-*Scale method: Manual
+* Scale method: Manual
 
-*Node count: 1
+* Node count: 1
 
-*Click update
+* Click update
 
-*Click on Add node pool:
+* Click on Add node pool:
 
-*Node pool name: workerspool.
+* Node pool name: workerspool.
 
-*Mode: User
+* Mode: User
 
-*Set node size to D2as_v4.
+* Set node size to D2as_v4.
 
-*Scale method: Manual
+* Scale method: Manual
 
-*Node count: 1
+* Node count: 1
 
-*Click add
+* Click add
 
-*Click Review + Create, and then Create. The deployment will take a few minutes.
+* Click Review + Create, and then Create. The deployment will take a few minutes.
 
 ### Step 3: Connect to AKS Cluster via Visual Studio
 
@@ -155,11 +155,11 @@ Go to the OpenAI resource created
 
 Deploy GPT-4:
 
-*Go to the Model Deployments section and click Add Deployment
+* Go to the Model Deployments section and click Add Deployment
 
-*Choose GPT-4 as the model and provide a deployment name
+* Choose GPT-4 as the model and provide a deployment name
 
-*Set the deployment configuration as required and deploy the model
+* Set the deployment configuration as required and deploy the model
 
 Deploy DALL-E 3:
 
@@ -171,9 +171,47 @@ Once deployed, note down the following details for each model:
 
 **Deployment Name** and **Endpoint URL**
 
+#### Update AI Service Deployment Configuration in the Deployment Files folder
 
+* Modify Secretes YAML:
 
+Edit the secrets.yaml file.
 
+Replace OPENAI_API_KEY placeholder with the Base64-encoded value of the API_KEY.
+
+* Modify Deployment YAML:
+
+Edit the aps-all-in-one.yaml file.
+
+Replace the placeholders with the configurations retrieved:
+
+* AZURE_OPENAI_DEPLOYMENT_NAME: Enter the deployment name for GPT-4.
+
+* AZURE_OPENAI_ENDPOINT: Enter the endpoint URL for the GPT-4 deployment.
+
+* AZURE_OPENAI_DALLE_ENDPOINT: Enter the endpoint URL for the DALL-E 3 deployment.
+
+* AZURE_OPENAI_DALLE_DEPLOYMENT_NAME: Enter the deployment name for DALL-E 3.
+
+#### Deploy the ConfigMaps and Secrets
+Deploy the ConfigMap for RabbitMQ Plugins:
+
+```bash
+kubectl apply -f config-maps.yaml
+```
+
+Create and Deploy the Secret for OpenAI API:
+
+*Replace Base64-encoded-API-KEY in secrets.yaml with your Base64-encoded OpenAI API key.
+
+```bash
+kubectl apply -f secrets.yaml
+```
+#### Step 5: Deploy the Application
+
+```bash
+kubectl apply -f best-buy-all-in-one.yaml
+```
 
 ![store-front1](image.png)
 
@@ -212,6 +250,12 @@ Once deployed, note down the following details for each model:
 
 
 ## Any issues or limitations in the implementation
+
+* When I deployed the application, first the ai-service didn't run. 
+
+*
+
+*
 
 
 ## Demo Video
