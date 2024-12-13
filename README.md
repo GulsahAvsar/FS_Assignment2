@@ -265,3 +265,7 @@ kubectl apply -f best-buy-all-in-one.yaml
 ## Demo Video
 
 https://youtu.be/vBcjRDcnn7U
+
+## Bonus Task
+
+I created ci/cd pipeline workflow for store-admin-best-buy
