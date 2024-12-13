@@ -6,6 +6,29 @@
 
 ## Application and Architecture Explanation
 
+### Architecture
+
+This application is a cloud-native system for Best Buy that supports customer and employee interactions, order processing, inventory management, and AI-driven services.
+Key users are customers and employees as shown in the diagram.
+
+**store-front-best-buy** acts as the front-end for customers, allowing them to browse products, place orders, and interact with the system.
+
+**store-admin-best-buy** enables employees to manage operations, such as inventory, product updates, and order fulfillment.
+
+**order-service-best-buy** handles order placements by customers. Processes these orders and sends them to the Azure Service Bus, which queues them for further processing.
+
+**product-service-best-buy** manages product information, such as inventory and availability. Interacts with MongoDB for data storage.
+
+**makeline-service-best-buy** processes orders from employees and customers, ensuring order fulfillment and updates in the order database.
+
+**ai-service-best-buy** uses AI capabilities to enhance customer and employee interactions. For example, the GPT-4 model powers intelligent responses, and the DALL-E model generates custom images.
+
+### Information Flow
+
+Customers interact with store-front-best-buy to browse and place orders.
+Orders are processed by order-service-best-buy, which utilizes the Azure Service Bus for queuing.
+Employees use store-admin-best-buy to manage operations like product updates and processing orders.
+Product data is fetched and updated by product-service-best-buy with data stored in MongoDB.
 
 ## Deployment Instructions
 
