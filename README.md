@@ -251,13 +251,17 @@ kubectl apply -f best-buy-all-in-one.yaml
 
 ## Any issues or limitations in the implementation
 
-* When I deployed the application, first the ai-service didn't run. 
+* When I deployed the application, first the ai-service didn't run. I replaced the docker image of aiservice with the previous one (Algonquinpetstore) and it worked.
 
-*
+* For the OpenAI service when I tried to deploy GPT-4 and DALL-E 3, I couldn't select the region East US. It was not available. For this reason, the endpoint and API Key was different.
+ And unfortunately, the I couldn't get the generation of the text and image by AI for the products.
 
-*
+* I wanted to try for OPENAI once more to see it generates description and image for the products. When I tried 1 day later to create it, I got an error message saying that the quota is insufficient for creating an OpenAI service
 
+![insufficientquotaforopenai](image-5.png)
+
+* I couldn't implement managed backing service to the application
 
 ## Demo Video
 
-
+https://youtu.be/vBcjRDcnn7U
