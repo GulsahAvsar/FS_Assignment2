@@ -32,6 +32,75 @@ Product data is fetched and updated by product-service-best-buy with data stored
 
 ## Deployment Instructions
 
+### Step 1: best-buy-all-in-one.yaml
+
+After updating all services, I pushed them to github separately. Then I build docker images and pushed them to docker desktop. I updated the best-buy-all-in-one.yaml with new docker images. 
+This file takes place under Deployment files folder and includes all necessary Kubernetes resources.
+
+### Step 2: Set up AKS Cluster
+
+I created an AKS clusters with one worker node. 
+
+Log in to Azure Portal.
+
+Create a Resource Group called FullStackLAB2 in Canada region.
+
+**Create an AKS Cluster**
+
+In the Azure Portal, under Kubernetes services create and select Kubernetes cluster.
+In the Basics tap fill in the following details:
+*Subscription: Select your subscription.
+*Resource group: Choose FullStackLAB2
+*Cluster preset configuration: Choose Dev/Test.
+*Kubernetes cluster name: BestBuyCluster
+*Region: Same as your resource group (e.g., Canada).
+*Availability zones: None.
+*AKS pricing tier: Free.
+*Kubernetes version: Default.
+*Automatic upgrade: Disabled.
+*Automatic upgrade scheduler: No schedule.
+*Node security channel type: None.
+*Security channel scheduler: No schedule.
+*Authentication and Authorization: Local accounts with Kubernetes RBAC.
+*In the Node pools tap fill in the following details:
+*Select agentpool. Optionally change its name to masterpool. This nodes will have the controlplane.
+*Set node size to D2as_v4.
+*Scale method: Manual
+*Node count: 1
+*Click update
+*Click on Add node pool:
+*Node pool name: workerspool.
+*Mode: User
+*Set node size to D2as_v4.
+*Scale method: Manual
+*Node count: 1
+*Click add
+*Click Review + Create, and then Create. The deployment will take a few minutes.
+
+### Step 3: Connect to AKS Cluster via Visual Studio
+
+Once the AKS cluster is deployed, navigate to the cluster in the Azure Portal.
+
+In the overview page, click on Connect.
+
+Select Azure CLI tap.
+
+Login to your azure account using the following command:
+
+```bash
+az login
+```
+
+Set the cluster subscription using the command shown in the portal 
+
+```bash
+az account set --subscription 'subscription-id'
+```
+
+Copy the command shown in the portal for configuring kubectl
+
+
+
 
 
 ![store-front1](image.png)
@@ -71,4 +140,8 @@ Product data is fetched and updated by product-service-best-buy with data stored
 
 
 ## Any issues or limitations in the implementation
+
+
+## Demo Video
+
 
